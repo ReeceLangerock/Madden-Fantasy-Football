@@ -43,11 +43,11 @@ app.post('/*', function(req, res) {
   //});
 
 
-  console.log(req.body.teamStandingInfoList);
+  console.log(req.body.teamStandingInfoList.teamName);
   //for (var i in req.body.data.teamStandingInfoList){
   //  tempData.name = req.body.teamStandingInfoList[i].teamName;
   //}
-  res.send("Team Rankings: " + parsedData);
+  res.send("Team Rankings: ");
 
 });
 
