@@ -42,10 +42,14 @@ app.post('/*', function(req, res) {
   //  data: (req && req.body) || ''
   //});
 
-  console.log(req.body.success);
-  console.log(req.body.teamStandingInfoList);
-  res.send(req.body.teamStandingInfoList);
+
+  console.log(req.body.teamStandingInfoList.teamName);
+  res.send("Team Rankings: " + req.body.teamStandingInfoList);
 
 });
+
+displayData(data){
+
+}
 
 app.listen(app.get('port'), function() { console.log('Madden Companion Exporter is running on port', app.get('port')) });
