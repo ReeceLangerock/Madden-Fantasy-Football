@@ -43,7 +43,7 @@ app.post('/*', function(req, res) {
   //});
 
 
-  console.log(req.body.teamStandingInfoList.teamName);
+  console.log(req.body.teamStandingInfoList[0].teamName);
   res.send("Team Rankings: " + req.body.teamStandingInfoList);
 
 });
