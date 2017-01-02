@@ -48,8 +48,5 @@ app.post('/*', function(req, res) {
 
 });
 
-displayData(data){
-
-}
 
 app.listen(app.get('port'), function() { console.log('Madden Companion Exporter is running on port', app.get('port')) });
