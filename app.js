@@ -26,7 +26,8 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 app.get('/', function(req, res) {
-  return res.send('Madden Data')
+  //res.send("Ready to accept from CFM App");
+  return res.send('Madden Data');
 });
 
 // This accepts all posts requests!
@@ -40,8 +41,12 @@ app.post('/*', function(req, res) {
   newDataRef.set({
     data: (req && req.body) || ''
   });
+  var teamNames =[];
+  for(var i =0; i < 32; i++){
+    teamNames.push(req.body.teamStandingInfoList[i].teamName);
+  }
+  res.send(teamNames);
 
-  res.send('Got a POST request');
 });
 
 app.listen(app.get('port'), function() { console.log('Madden Companion Exporter is running on port', app.get('port')) });
