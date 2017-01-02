@@ -41,17 +41,12 @@ app.post('/*', function(req, res) {
   //newDataRef.set({
   //  data: (req && req.body) || ''
   //});
-
-  var tempData = {
-    name: "",
-    teamWins: 0,
-    teamLosses: 0
-  };
-
-  for (var i in req.body.data.teamStandingInfoList){
-    tempData.name = req.body.teamStandingInfoList[i].teamName;
-  }
-  console.log(tempData);
+  console.log(req.body);
+  console.log(req.body.data);
+  //for (var i in req.body.data.teamStandingInfoList){
+  //  tempData.name = req.body.teamStandingInfoList[i].teamName;
+  //}
+  console.log(req.body.data.teamStandingInfoList);
   res.send("Team Rankings: " + req.body.data.teamStandingInfoList);
 
 });
