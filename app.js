@@ -41,13 +41,14 @@ app.post('/*', function(req, res) {
   //newDataRef.set({
   //  data: (req && req.body) || ''
   //});
+  var parsedData = JSON.parse(req.body);
+
   console.log(req.body);
   console.log(req.body.data);
   //for (var i in req.body.data.teamStandingInfoList){
   //  tempData.name = req.body.teamStandingInfoList[i].teamName;
   //}
-  console.log(req.body.data.teamName);
-  res.send("Team Rankings: " + req.body.data.teamName);
+  res.send("Team Rankings: " + parsedData);
 
 });
 
