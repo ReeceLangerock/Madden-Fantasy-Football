@@ -41,10 +41,9 @@ app.post('/*', function(req, res) {
   //newDataRef.set({
   //  data: (req && req.body) || ''
   //});
-  var parsedData = JSON.parse(req.body);
 
-  console.log(req.body);
-  console.log(req.body.data);
+
+  console.log(req.body.teamStandingInfoList);
   //for (var i in req.body.data.teamStandingInfoList){
   //  tempData.name = req.body.teamStandingInfoList[i].teamName;
   //}
