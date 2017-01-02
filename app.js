@@ -45,7 +45,7 @@ app.post('/*', function(req, res) {
   var tempData = {
     name: "",
     teamWins: 0,
-    teamLosses:
+    teamLosses: 0
   };
 
   for (var i in req.body.teamStandingInfoList){
