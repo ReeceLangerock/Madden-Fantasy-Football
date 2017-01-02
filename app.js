@@ -31,20 +31,21 @@ app.get('/', function(req, res) {
 });
 
 // This accepts all posts requests!
-app.post('/*', function(req, res) {
+app.post('/', function(req, res) {
   const db = admin.database();
   const ref = db.ref();
   const dataRef= ref.child("data");
   // Change what is set to the database here
   // Rosters are in the body under rosterInfoList
   const newDataRef = dataRef.push();
-  newDataRef.set({
-    data: (req && req.body) || ''
-  });
+  //newDataRef.set({
+  //  data: (req && req.body) || ''
+  //});
   var teamNames =[];
   for(var i =0; i < 32; i++){
     teamNames.push(req.body.teamStandingInfoList);
   }
+  console.log(teamNames);
   res.send(teamNames);
 
 });
