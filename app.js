@@ -43,7 +43,7 @@ app.post('/*', function(req, res) {
   });
   var teamNames =[];
   for(var i =0; i < 32; i++){
-    teamNames.push(req.body.teamStandingInfoList[i].teamName);
+    teamNames.push(req.body.teamStandingInfoList);
   }
   res.send(teamNames);
 
