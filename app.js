@@ -50,15 +50,11 @@ app.post('/*', function(req, res) {
         if (req.body.teamStandingInfoList){
             teamName.push(req.body.teamStandingInfoList[i].teamName);
             console.log(req.body.teamStandingInfoList[i].teamName);
-            
+
           }
     }
-    res.write("Team Rankings: "+ teamName);
+    res.send("Team Rankings: ");
     console.log("ending loop");
-    //for (var i in req.body.data.teamStandingInfoList){
-    //  tempData.name = req.body.teamStandingInfoList[i].teamName;
-    //}
-
 
 });
 
