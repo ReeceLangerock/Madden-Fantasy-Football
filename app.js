@@ -44,14 +44,17 @@ app.post('/*', function(req, res) {
     //newDataRef.set({
     //  data: (req && req.body) || ''
     //});
-
+    var teamName =[];
+    console.log("strting loop");
     for (var i = 0; i < 32; i++) {
         if (req.body.teamStandingInfoList){
-        var teamName = req.body.teamStandingInfoList[i].teamName
+            teamName.push(req.body.teamStandingInfoList[i].teamName);
             console.log(req.body.teamStandingInfoList[i].teamName);
-            res.write("Team Rankings: "+ teamName);
+            
           }
     }
+    res.write("Team Rankings: "+ teamName);
+    console.log("ending loop");
     //for (var i in req.body.data.teamStandingInfoList){
     //  tempData.name = req.body.teamStandingInfoList[i].teamName;
     //}
