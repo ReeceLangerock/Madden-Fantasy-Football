@@ -28,13 +28,13 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.get('/', function(req, res) {
+var refresh = app.get('/', function(req, res) {
     //res.send("Ready to accept from CFM App");
     return res.send('Madden Data');
 });
 var teamName =[];
 // This accepts all posts requests!
-app.post('/*', function(req, res) {
+app.post('/pyth', function(req, res) {
     const db = admin.database();
     const ref = db.ref();
     const dataRef = ref.child("data");
@@ -53,7 +53,8 @@ app.post('/*', function(req, res) {
           }
     }
     res.set('Content-Type', 'text/plain');
-    res.redirect("Team Rankings: " teamName);
+    res.send("Team Rankings: " + teamName);
+    res.end();
 
 });
 
