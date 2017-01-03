@@ -39,7 +39,7 @@ app.get('/', function(req, res) {
     res.send("waiting for data");
 });
 
-app.get('/success',function(req, res) {
+var refresh = app.get('/success',function(req, res) {
     res.render('index', {
         title: 'My App',
         items: teamName
@@ -66,11 +66,7 @@ app.post('/*', function(req, res) {
 
           }
     }
-    res.render('index', {
-        title: 'My App',
-        items: teamName
-    });
-
+    refresh();
 });
 
 
