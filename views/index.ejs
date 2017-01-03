@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Node/Express Test</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1><%= title %></h1>
+        <ul>
+            <% for (var i =0; i < teamName.length; i++) { %>
+                <li>
+                    <%= teamName[i] %>
+                </li>
+                <% } %>
+        </ul>
+
+        <form action="/add" method="post">
+            <input type="text" name="newItem">
+            <input type="submit">
+        </form>
+    </div>
+    <script src="jquery/dist/jquery.js"></script>
+
+</body>
+
+</html>

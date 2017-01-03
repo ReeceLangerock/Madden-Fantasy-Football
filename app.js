@@ -3,8 +3,11 @@ var bodyParser = require('body-parser');
 var admin = require("firebase-admin");
 
 
+
 const app = express();
 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 // TODO: Enter the path to your service account json file
 // Need help with this step go here: https://firebase.google.com/docs/admin/setup
@@ -28,11 +31,15 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-var refresh = app.get('/', function(req, res) {
-    //res.send("Ready to accept from CFM App");
-    return res.send('Madden Data');
-});
+
 var teamName =[];
+
+app.get('/', function(req, res) {
+    res.render('index', {
+        title: 'My App',
+        items: teamName
+    });
+});
 // This accepts all posts requests!
 app.post('/*', function(req, res) {
     const db = admin.database();
@@ -52,9 +59,7 @@ app.post('/*', function(req, res) {
 
           }
     }
-    res.set('Content-Type', 'text/plain');
-    res.send("Team Rankings: " + teamName);
-    res.end();
+  res.redirect('/');
 
 });
 
