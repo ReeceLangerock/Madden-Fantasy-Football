@@ -44,6 +44,7 @@ app.get('/success',function(req, res) {
         title: 'My App',
         items: teamName
     });
+    res.redirect('/success');
 });
 
 // This accepts all posts requests!
@@ -65,7 +66,10 @@ app.post('/*', function(req, res) {
 
           }
     }
-  res.redirect('/success');
+    res.render('index', {
+        title: 'My App',
+        items: teamName
+    });
 
 });
 
