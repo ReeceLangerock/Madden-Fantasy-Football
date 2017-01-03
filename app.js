@@ -47,12 +47,14 @@ app.post('/*', function(req, res) {
 
     for (var i = 0; i < 32; i++) {
         if (req.body.teamStandingInfoList)
+        var teamName = req.body.teamStandingInfoList[i].teamName
             console.log(req.body.teamStandingInfoList[i].teamName);
+            res.write("Team Rankings: "+ teamName);
     }
     //for (var i in req.body.data.teamStandingInfoList){
     //  tempData.name = req.body.teamStandingInfoList[i].teamName;
     //}
-    res.send("Team Rankings: ");
+
 
 });
 
