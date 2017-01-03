@@ -44,7 +44,8 @@ app.post('/*', function(req, res) {
     //newDataRef.set({
     //  data: (req && req.body) || ''
     //});
-    for (var i = 0; i < 32; i++) {
+    console.log(typeof(req.body));
+    for (var i = 1; i < 33; i++) {
         if (req.body.success)
             console.log(req.body.teamStandingInfoList[i].teamName);
     }
