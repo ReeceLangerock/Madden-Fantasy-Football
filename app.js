@@ -34,7 +34,7 @@ app.get('/', function(req, res) {
 });
 
 // This accepts all posts requests!
-app.post('/*', function(req, res) {
+app.get('/*', function(req, res) {
     const db = admin.database();
     const ref = db.ref();
     const dataRef = ref.child("data");
@@ -45,7 +45,7 @@ app.post('/*', function(req, res) {
     //  data: (req && req.body) || ''
     //});
     var teamName =[];
-    console.log("strting loop");
+    console.log("starting loop");
     for (var i = 0; i < 32; i++) {
         if (req.body.teamStandingInfoList){
             teamName.push(req.body.teamStandingInfoList[i].teamName);
