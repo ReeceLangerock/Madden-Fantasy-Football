@@ -28,11 +28,11 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-//app.get('/', function(req, res) {
+app.get('/', function(req, res) {
     //res.send("Ready to accept from CFM App");
-//    return res.send('Madden Data');
-//});
-
+    return res.send('Madden Data');
+});
+var teamName =[];
 // This accepts all posts requests!
 app.post('/*', function(req, res) {
     const db = admin.database();
@@ -44,7 +44,6 @@ app.post('/*', function(req, res) {
     //newDataRef.set({
     //  data: (req && req.body) || ''
     //});
-    var teamName =[];
     console.log("starting loop");
     for (var i = 0; i < 32; i++) {
         if (req.body.teamStandingInfoList){
@@ -54,7 +53,7 @@ app.post('/*', function(req, res) {
           }
     }
     res.set('Content-Type', 'text/plain');
-    res.send("Team Rankings: ");
+    res.redirect("Team Rankings: " teamName);
 
 });
 
