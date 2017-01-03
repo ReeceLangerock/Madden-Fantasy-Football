@@ -28,13 +28,13 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.get('/', function(req, res) {
+//app.get('/', function(req, res) {
     //res.send("Ready to accept from CFM App");
-    return res.send('Madden Data');
-});
+//    return res.send('Madden Data');
+//});
 
 // This accepts all posts requests!
-app.get('/*', function(req, res) {
+app.post('/*', function(req, res) {
     const db = admin.database();
     const ref = db.ref();
     const dataRef = ref.child("data");
@@ -53,8 +53,8 @@ app.get('/*', function(req, res) {
 
           }
     }
+    res.set('Content-Type', 'text/plain');
     res.send("Team Rankings: ");
-    console.log("ending loop");
 
 });
 
