@@ -36,11 +36,15 @@ app.use(bodyParser.urlencoded({
 var teamName =[];
 
 app.get('/', function(req, res) {
+    res.send("waiting for data");
+});
+
+app.get('/success',function(req, res) {
     res.render('index', {
         title: 'My App',
         items: teamName
     });
-});
+});)
 // This accepts all posts requests!
 app.post('/*', function(req, res) {
     const db = admin.database();
@@ -55,12 +59,12 @@ app.post('/*', function(req, res) {
     console.log("starting loop");
     for (var i = 0; i < 32; i++) {
         if (req.body.teamStandingInfoList){
-            teamName.push(req.body.teamStandingInfoList[i].teamName);
+            teamName.push({"team name": req.body.teamStandingInfoList[i].teamName});
             console.log(req.body.teamStandingInfoList[i].teamName);
 
           }
     }
-  res.redirect('/');
+  res.redirect('/success');
 
 });
 
