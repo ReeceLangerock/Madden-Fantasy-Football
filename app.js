@@ -34,7 +34,7 @@ var refresh = app.get('/', function(req, res) {
 });
 var teamName =[];
 // This accepts all posts requests!
-app.post('/pyth', function(req, res) {
+app.post('/*', function(req, res) {
     const db = admin.database();
     const ref = db.ref();
     const dataRef = ref.child("data");
