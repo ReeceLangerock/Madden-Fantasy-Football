@@ -44,7 +44,8 @@ app.get('/success',function(req, res) {
         title: 'My App',
         items: teamName
     });
-});)
+});
+
 // This accepts all posts requests!
 app.post('/*', function(req, res) {
     const db = admin.database();
