@@ -60,7 +60,7 @@ app.post('/*', function(req, res) {
     console.log("starting loop");
     for (var i = 0; i < 32; i++) {
         if (req.body.teamStandingInfoList){
-            teamName.push({"team name": req.body.teamStandingInfoList[i].teamName});
+            teamName.push({"teamname": req.body.teamStandingInfoList[i].teamName});
             console.log(req.body.teamStandingInfoList[i].teamName);
 
           }
