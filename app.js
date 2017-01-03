@@ -45,8 +45,8 @@ app.post('/*', function(req, res) {
     //  data: (req && req.body) || ''
     //});
     console.log(typeof(req.body));
-    for (var i = 1; i < 33; i++) {
-        if (req.body.success)
+    for (var i = 0; i < 32; i++) {
+        if (req.body.teamStandingInfoList[i])
             console.log(req.body.teamStandingInfoList[i].teamName);
     }
     //for (var i in req.body.data.teamStandingInfoList){
