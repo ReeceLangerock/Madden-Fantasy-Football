@@ -42,8 +42,8 @@ app.post('/*', function(req, res) {
   //  data: (req && req.body) || ''
   //});
 
-
-  console.log(req.body.teamStandingInfoList.teamName);
+  console.log(req.body.success);
+  console.log(req.body.teamStandingInfoList[0].teamName);
   //for (var i in req.body.data.teamStandingInfoList){
   //  tempData.name = req.body.teamStandingInfoList[i].teamName;
   //}
