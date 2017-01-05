@@ -61,19 +61,16 @@ app.post('/*', function(req, res) {
     //});
     console.log("starting loop");
     for (var i = 0; i < 32; i++) {
-        if (req.body.teamStandingInfoList) {
+
             calculatePyth(req.body.teamStandingInfoList[i]);
 
-
-
-        }
     }
-    
+    res.end();
 
 });
 
 function calculatePyth(data) {
-    console.log(data);
+    
     var teamName = data.teamName;
     var gamesPlayed = data.totalWins + data.totalLosses + data.totalTies;
     var wins = data.totalWins;

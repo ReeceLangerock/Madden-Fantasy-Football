@@ -10,21 +10,39 @@
 <body>
     <div class="container">
         <h1><%= title %></h1>
-        <ul>
-            <% for (var i =0; i < items.length; i++) { %>
-                <li>
-                    <%= "Team Name: " +items[i].teamName %>
-                </li>
-                <li>
-                    <%= "Team Name: " +items[i].pythDiff %>
-                </li>
-                <% } %>
-        </ul>
+        <table border='1'>
+            <tr>
+                <td>#</td>
+                <td>Team</td>
+                <td>Wins</td>
+                <td>Pyth. Expected Wins</td>
+                <td>Win +/-</td>
+            </tr>
 
-        <form action="/add" method="post">
-            <input type="text" name="newItem">
-            <input type="submit">
-        </form>
+            <% for (var i =0; i < items.length; i++) { %>
+                <tr>
+                    <td>i
+                        <td>
+                            <td>
+                                <%= items[i].teamName %>
+                            </td>
+                            <td>
+                                <%= items[i].teamWins %>
+                            </td>
+                            <td>
+                                <%= items[i].pythExpWins %>
+                            </td>
+                            <td>
+                                <%= items[i].pythDiff %>
+                            </td>
+                </tr>
+
+
+
+                <form action="/add" method="post">
+                    <input type="text" name="newItem">
+                    <input type="submit">
+                </form>
     </div>
     <script src="jquery/dist/jquery.js"></script>
 
