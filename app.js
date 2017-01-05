@@ -35,6 +35,8 @@ app.use(bodyParser.urlencoded({
 
 var leagueInfoData = [];
 
+
+
 app.get('/', function(req, res) {
     res.send("waiting for data");
 });
@@ -65,6 +67,8 @@ app.post('/*', function(req, res) {
             calculatePyth(req.body.teamStandingInfoList[i]);
 
     }
+    leagueInfoData.sort((a, b) => a.pythExpWins > b.pythExpWins ? -1 : 1);
+    console.log("loop end");
     res.end();
 
 });
