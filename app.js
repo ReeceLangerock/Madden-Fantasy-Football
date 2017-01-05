@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({
 
 
 var leagueInfoData = [];
-
+var tempDataDump = [];
 
 
 app.get('/', function(req, res) {
@@ -52,16 +52,21 @@ app.get('/test', function(req, res) {
 
 // This accepts all posts requests!
 app.post('/*', function(req, res) {
-  console.log(req.body);
-      //const db = admin.database();
-      //const ref = db.ref();
-      //const dataRef = ref.child("data");
+
+    //const db = admin.database();
+    //const ref = db.ref();
+    //const dataRef = ref.child("data");
     // Change what is set to the database here
     // Rosters are in the body under rosterInfoList
-      //const newDataRef = dataRef.push();
+    //const newDataRef = dataRef.push();
     //newDataRef.set({
     //  data: (req && req.body) || ''
     //});
+    if ('rosterInfoList' in req.body) {
+        for (var i = 0; i < req.body.rosterInfoList.length; i++) {
+            console.log(req.body.rosterInfoList[i].firtName)
+        }
+    }
 
     if ('teamStandingInfoList' in req.body) {
         for (var i = 0; i < 32; i++) {
@@ -69,8 +74,8 @@ app.post('/*', function(req, res) {
 
         }
         leagueInfoData.sort((a, b) => a.pythExpWins > b.pythExpWins ? -1 : 1);
-        res.end();
     }
+    res.end();
 });
 
 function calculatePyth(data) {
