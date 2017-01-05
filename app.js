@@ -52,12 +52,13 @@ app.get('/test', function(req, res) {
 
 // This accepts all posts requests!
 app.post('/*', function(req, res) {
-    const db = admin.database();
-    const ref = db.ref();
-    const dataRef = ref.child("data");
+  console.log(req.body);
+      //const db = admin.database();
+      //const ref = db.ref();
+      //const dataRef = ref.child("data");
     // Change what is set to the database here
     // Rosters are in the body under rosterInfoList
-    const newDataRef = dataRef.push();
+      //const newDataRef = dataRef.push();
     //newDataRef.set({
     //  data: (req && req.body) || ''
     //});
