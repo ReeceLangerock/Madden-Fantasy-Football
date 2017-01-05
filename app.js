@@ -39,13 +39,14 @@ app.get('/', function(req, res) {
     res.send("waiting for data");
 });
 
-var refresh = app.get('/success',function(req, res) {
-    res.render('index', {
-        title: 'My App',
-        items: teamName
-    });
-    res.redirect('/success');
-});
+app.get('/test', function(req, res) {
+  res.render('index', {
+      title: 'My App',
+      items: teamName
+  });
+
+};
+
 
 // This accepts all posts requests!
 app.post('/*', function(req, res) {
@@ -62,11 +63,11 @@ app.post('/*', function(req, res) {
     for (var i = 0; i < 32; i++) {
         if (req.body.teamStandingInfoList){
             teamName.push({"teamname": req.body.teamStandingInfoList[i].teamName});
-            console.log(req.body.teamStandingInfoList[i].teamName);
+            console.log(req.body.teamStandingInfoList[i]);
 
           }
     }
-    refresh();
+
 });
 
 
