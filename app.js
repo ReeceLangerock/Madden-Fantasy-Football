@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({
 
 
 var leagueInfoData = [];
-var tempDataDump = [];
+var tempTeamStandingInfoDump = [];
 
 
 app.get('/', function(req, res) {
@@ -63,19 +63,20 @@ app.post('/*', function(req, res) {
     //  data: (req && req.body) || ''
     //});
     if ('rosterInfoList' in req.body) {
-        for (var i = 0; i < req.body.rosterInfoList.length; i++) {
-            console.log(req.body.rosterInfoList[i].firtName)
+        for (let i = 0; i < req.body.rosterInfoList.length; i++) {
+            console.log(req.body.rosterInfoList[i].firstName + " " + req.body.rosterInfoList[i].lastName);
         }
-    }
-
-    if ('teamStandingInfoList' in req.body) {
-        for (var i = 0; i < 32; i++) {
-            calculatePyth(req.body.teamStandingInfoList[i]);
-
+    } else if ('teamStandingInfoList' in req.body) {
+        for (let i = 0; i < 32; i++) {
+            tempDataDump.push(req.body.teamStandingInfoList[i]);
         }
-        leagueInfoData.sort((a, b) => a.pythExpWins > b.pythExpWins ? -1 : 1);
     }
     res.end();
+    for (let i = 0; i < tempTeamStandingInfoDump.length; i++) {
+        calculatePyth(tempTeamStandingInfoDump);
+    }
+    leagueInfoData.sort((a, b) => a.pythExpWins > b.pythExpWins ? -1 : 1);
+    tempTeamStandingInfoDump = [];
 });
 
 function calculatePyth(data) {
