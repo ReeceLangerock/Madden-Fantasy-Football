@@ -2,9 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var admin = require("firebase-admin");
 var path = require('path');
-var ejsLint=require('./views/index.js');
 
-ejsLint.lint(index.js, options)
 
 
 const app = express();
