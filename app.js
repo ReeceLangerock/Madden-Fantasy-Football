@@ -33,17 +33,17 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-var teamName =[];
+var teamName = [];
 
 app.get('/', function(req, res) {
     res.send("waiting for data");
 });
 
 app.get('/test', function(req, res) {
-  res.render('index', {
-      title: 'My App',
-      items: teamName
-  });
+    res.render('index', {
+        title: 'My App',
+        items: teamName
+    });
 
 });
 
@@ -61,14 +61,41 @@ app.post('/*', function(req, res) {
     //});
     console.log("starting loop");
     for (var i = 0; i < 32; i++) {
-        if (req.body.teamStandingInfoList){
-            teamName.push({"teamname": req.body.teamStandingInfoList[i].teamName});
-            console.log(req.body.teamStandingInfoList[i]);
+        if (req.body.teamStandingInfoList) {
+            calculatePyth(req.body.teamStandingInfoList[i]);
+            teamName.push({
+                "teamname": req.body.teamStandingInfoList[i].teamName
+            });
 
-          }
+
+        }
     }
 
 });
+
+function calculatePyth(data) {
+    var teamName = data.teamName;
+    var gamesPlayed = data.totalWins + data.totalLosses + data.totalTies;
+    var wins = data.totalWins;
+    var pointsFor = data.ptsFor * gamesPlayed;
+    var pointsAgainst = data.ptsAgainst * gamesPlayed;
+
+    var expectedWins = (Math.pow(pointsFor, 2.37) / (Math.pow(pointsFor, 2.37) + Math.pow(pointsAgainst, 2.37)) * gamesPlayed);
+    var pythDiff = (wins - expectedWins);
+    pythDiff = pythDiff.toFixed(2);
+    expectedWins = Math.round(expectedWins * 100) / 100;
+
+    pythInfo.push({
+        "teamName": teamName,
+        "gamesPlayed": gamesPlayed,
+        "teamWins": wins,
+        "pointsScored": pointsFor,
+        "pointsAllowed": pointsAgainst,
+        "pythExpWins": expectedWins,
+        "pythDiff": pythDiff
+    });
+
+}
 
 
 app.listen(app.get('port'), function() {
