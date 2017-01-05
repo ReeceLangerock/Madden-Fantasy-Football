@@ -63,9 +63,7 @@ app.post('/*', function(req, res) {
     for (var i = 0; i < 32; i++) {
         if (req.body.teamStandingInfoList) {
             calculatePyth(req.body.teamStandingInfoList[i]);
-            teamName.push({
-                "teamname": req.body.teamStandingInfoList[i].teamName
-            });
+            
 
 
         }
