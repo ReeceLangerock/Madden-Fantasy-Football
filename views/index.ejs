@@ -21,28 +21,30 @@
 
             <% for (var i =0; i < items.length; i++) { %>
                 <tr>
-                    <td>i
-                        <td>
-                            <td>
-                                <%= items[i].teamName %>
-                            </td>
-                            <td>
-                                <%= items[i].teamWins %>
-                            </td>
-                            <td>
-                                <%= items[i].pythExpWins %>
-                            </td>
-                            <td>
-                                <%= items[i].pythDiff %>
-                            </td>
+                    <td>
+                        <%= i %>
+                    </td>
+                    <td>
+                        <%= items[i].teamName %>
+                    </td>
+                    <td>
+                        <%= items[i].teamWins %>
+                    </td>
+                    <td>
+                        <%= items[i].pythExpWins %>
+                    </td>
+                    <td>
+                        <%= items[i].pythDiff %>
+                    </td>
+
                 </tr>
+                <% } %>
 
 
-
-                <form action="/add" method="post">
-                    <input type="text" name="newItem">
-                    <input type="submit">
-                </form>
+                    <form action="/add" method="post">
+                        <input type="text" name="newItem">
+                        <input type="submit">
+                    </form>
     </div>
     <script src="jquery/dist/jquery.js"></script>
 
