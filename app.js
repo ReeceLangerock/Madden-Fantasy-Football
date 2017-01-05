@@ -45,7 +45,7 @@ app.get('/test', function(req, res) {
       items: teamName
   });
 
-};
+});
 
 
 // This accepts all posts requests!
