@@ -42,7 +42,7 @@ app.get('/', function(req, res) {
 app.get('/test', function(req, res) {
     res.render('index', {
         title: 'My App',
-        items: teamName
+        items: leagueInfoData
     });
 
 });
@@ -63,11 +63,12 @@ app.post('/*', function(req, res) {
     for (var i = 0; i < 32; i++) {
         if (req.body.teamStandingInfoList) {
             calculatePyth(req.body.teamStandingInfoList[i]);
-            
+
 
 
         }
     }
+    res.end();
 
 });
 
