@@ -68,11 +68,12 @@ app.post('/*', function(req, res) {
 
         }
     }
-    res.end();
+    
 
 });
 
 function calculatePyth(data) {
+    console.log(data);
     var teamName = data.teamName;
     var gamesPlayed = data.totalWins + data.totalLosses + data.totalTies;
     var wins = data.totalWins;
