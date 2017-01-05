@@ -61,20 +61,15 @@ app.post('/*', function(req, res) {
     //newDataRef.set({
     //  data: (req && req.body) || ''
     //});
+
     if ('teamStandingInfoList' in req.body) {
-        console.log("data is teamStandingInfoList");
-    }
-    else{
-      console.log(req.body);
-    }
+        for (var i = 0; i < 32; i++) {
+            calculatePyth(req.body.teamStandingInfoList[i]);
 
-    for (var i = 0; i < 32; i++) {
-        calculatePyth(req.body.teamStandingInfoList[i]);
-
+        }
+        leagueInfoData.sort((a, b) => a.pythExpWins > b.pythExpWins ? -1 : 1);
+        res.end();
     }
-    leagueInfoData.sort((a, b) => a.pythExpWins > b.pythExpWins ? -1 : 1);
-    res.end();
-
 });
 
 function calculatePyth(data) {
