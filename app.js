@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-var teamName = [];
+var leagueInfoData = [];
 
 app.get('/', function(req, res) {
     res.send("waiting for data");
@@ -85,7 +85,7 @@ function calculatePyth(data) {
     pythDiff = pythDiff.toFixed(2);
     expectedWins = Math.round(expectedWins * 100) / 100;
 
-    pythInfo.push({
+    leagueInfoData.push({
         "teamName": teamName,
         "gamesPlayed": gamesPlayed,
         "teamWins": wins,
