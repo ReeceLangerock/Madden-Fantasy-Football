@@ -68,7 +68,7 @@ app.post('/*', function(req, res) {
         }
     } else if ('teamStandingInfoList' in req.body) {
         for (let i = 0; i < 32; i++) {
-            tempDataDump.push(req.body.teamStandingInfoList[i]);
+            tempTeamStandingInfoDump.push(req.body.teamStandingInfoList[i]);
         }
     }
     res.end();
