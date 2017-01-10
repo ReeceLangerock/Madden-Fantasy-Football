@@ -71,12 +71,14 @@ app.post('/*', function(req, res) {
             tempTeamStandingInfoDump.push(req.body.teamStandingInfoList[i]);
         }
     }
-    res.end();
+
     for (let i = 0; i < tempTeamStandingInfoDump.length; i++) {
         calculatePyth(tempTeamStandingInfoDump);
     }
     leagueInfoData.sort((a, b) => a.pythExpWins > b.pythExpWins ? -1 : 1);
     tempTeamStandingInfoDump = [];
+
+    res.end();
 });
 
 function calculatePyth(data) {
