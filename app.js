@@ -42,7 +42,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/test', function(req, res) {
-  console.log(leagueInfoData);
+
     res.render('index', {
         title: 'My App',
         items: leagueInfoData
@@ -53,17 +53,17 @@ app.get('/test', function(req, res) {
 
 // This accepts all posts requests!
 app.post('/*', function(req, res) {
-
-    //const db = admin.database();
-    //const ref = db.ref();
-    //const dataRef = ref.child("data");
+    console.log(req);
+    const db = admin.database();
+    const ref = db.ref();
+    const dataRef = ref.child("data");
     // Change what is set to the database here
     // Rosters are in the body under rosterInfoList
-    //const newDataRef = dataRef.push();
-    //newDataRef.set({
-    //  data: (req && req.body) || ''
-    //});
-    if ('rosterInfoList' in req.body) {
+    const newDataRef = dataRef.push();
+    newDataRef.set({
+      data: (req && req.body) || ''
+    });
+    /*if ('rosterInfoList' in req.body) {
         for (let i = 0; i < req.body.rosterInfoList.length; i++) {
             console.log(req.body.rosterInfoList[i].firstName + " " + req.body.rosterInfoList[i].lastName);
         }
@@ -78,12 +78,12 @@ app.post('/*', function(req, res) {
     }
     leagueInfoData.sort((a, b) => a.pythExpWins > b.pythExpWins ? -1 : 1);
     tempTeamStandingInfoDump = [];
-
+    */
     res.end();
 });
 
 function calculatePyth(data) {
-
+    console.log(data.teamName);
     var teamName = data.teamName;
     var gamesPlayed = data.totalWins + data.totalLosses + data.totalTies;
     var wins = data.totalWins;
