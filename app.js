@@ -61,8 +61,8 @@ app.get('/test', function(req, res) {
 // This accepts all posts requests!
 app.post('/*', function(req, res) {
     console.log(req);
-    var data = req;
-    db.collection('everythinggggg').insert({test : data});
+    var data = req.body;
+    db.collection('everything').insert({test : data});
 
     /*
     const db = admin.database();
