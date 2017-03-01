@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-mongoose.connect(`mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}ds161485.mlab.com:61485/revo-gm`);
+mongoose.connect(`mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@ds161485.mlab.com:61485/revo-gm`);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection eror:'));
 db.once('open', function(){
@@ -63,7 +63,7 @@ app.post('/*', function(req, res) {
 
     var data = req.body;
     db.collection('test').insert({test : data});
-    res.send(ref.child("data"));
+    res.send(req.body));
     /*
     const db = admin.database();
     const ref = db.ref();
