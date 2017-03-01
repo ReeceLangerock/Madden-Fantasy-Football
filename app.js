@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var admin = require("firebase-admin");
 var path = require('path');
-
+var mongoose = require('mongoose');
 
 
 const app = express();
@@ -32,6 +32,13 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+mongoose.connect(`mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}ds161485.mlab.com:61485/revo-gm`);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection eror:'));
+db.once('open', function(){
+  console.log("connected");
+})
+
 
 var leagueInfoData = [];
 var tempTeamStandingInfoDump = [];
@@ -53,7 +60,11 @@ app.get('/test', function(req, res) {
 
 // This accepts all posts requests!
 app.post('/*', function(req, res) {
-    console.log(req);
+
+
+    db.collection('test').insert({req.body});
+    res.send(ref.child("data"));
+    /*
     const db = admin.database();
     const ref = db.ref();
     const dataRef = ref.child("data");
@@ -63,7 +74,7 @@ app.post('/*', function(req, res) {
     newDataRef.set({
       data: (req && req.body) || ''
     });
-    /*if ('rosterInfoList' in req.body) {
+    if ('rosterInfoList' in req.body) {
         for (let i = 0; i < req.body.rosterInfoList.length; i++) {
             console.log(req.body.rosterInfoList[i].firstName + " " + req.body.rosterInfoList[i].lastName);
         }
