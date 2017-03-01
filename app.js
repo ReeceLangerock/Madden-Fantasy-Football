@@ -62,7 +62,7 @@ app.get('/test', function(req, res) {
 app.post('/*', function(req, res) {
     console.log(req.headers);
     var data = req.body;
-    db.collection('everything').insert({test : data});
+    //db.collection('everything').insert({test : data});
 
     /*
     const db = admin.database();
