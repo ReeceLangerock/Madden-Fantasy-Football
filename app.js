@@ -53,8 +53,11 @@ app.post('/*', function(req, res) {
 
     var leagueID = req.params[0].split("/")[1];
     var collection = req.params[0].split("/");
-    collection.splice(0,2);
-    collection.join('');
+    console.log(collection);
+    collection = collection.splice(0,2);
+    console.log(collection);
+    collection = collection.join('');
+    console.log(collection);
     //collection = String(collection);
     var data = req.body;
     db.collection(collection).remove({});
