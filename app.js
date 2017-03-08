@@ -61,6 +61,9 @@ app.get('/test', function(req, res) {
 // This accepts all posts requests!
 app.post('/*', function(req, res) {
     res.send(req);
+    console.log(req.headers);
+    console.log(req.params);
+    db.collection('prew1').insert({test : data});
     //var data = req.body;
     //db.collection('everything').insert({test : data});
 
