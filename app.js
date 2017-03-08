@@ -10,16 +10,6 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// TODO: Enter the path to your service account json file
-// Need help with this step go here: https://firebase.google.com/docs/admin/setup
-const serviceAccount = require("./madden-fantasy-football-firebase-adminsdk-muktr-2fa7ca5b53.json");
-
-// TODO: Enter your database url from firebase
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://madden-fantasy-football.firebaseio.com"
-});
-
 // Setup
 // Change the default port here if you want for local dev.
 app.set('port', (process.env.PORT || 5000));
