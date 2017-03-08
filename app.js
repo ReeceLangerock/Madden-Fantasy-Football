@@ -55,7 +55,7 @@ app.post('/*', function(req, res) {
     var collection = req.params[0].split("/")[2];
     //collection = String(collection);
     var data = req.body;
-    db.collection(collection).remove({}).insert(data);
+    db.collection(collection).insert(data);
     //db.collection('everything').insert({test : data});
 
     /*
