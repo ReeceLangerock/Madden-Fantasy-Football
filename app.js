@@ -49,10 +49,12 @@ app.get('/test', function(req, res) {
 
 // This accepts all posts requests!
 app.post('/*', function(req, res) {
-    console.log(req.headers);
+
     console.log(req.params);
+    var collection = req.params[0]
+    collection = String(collection);
     var data = req.body;
-    db.collection(req.params).insert({test : data});
+    db.collection(collection).insert({test : data});
     //db.collection('everything').insert({test : data});
 
     /*
