@@ -52,9 +52,12 @@ app.post('/*', function(req, res) {
 
 
     var leagueID = req.params[0].split("/")[1];
-    var collection = req.params[0].split("/")[2];
+    var collection = req.params[0].split("/");
+    collection.splice(0,2);
+    collection.join('');
     //collection = String(collection);
     var data = req.body;
+    db.collection(collection).remove({});
     db.collection(collection).insert(data);
     //db.collection('everything').insert({test : data});
 
