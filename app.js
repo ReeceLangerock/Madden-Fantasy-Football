@@ -51,8 +51,8 @@ app.get('/test', function(req, res) {
 app.post('/*', function(req, res) {
 
     console.log(leagueID);
-    var leagueID = req.params[0].split("/")[1];
-    var collection = req.params[0].split("/")[1];
+    var leagueID = req.params[0].split("/")[2];
+    var collection = req.params[0].split("/")[3];
     collection = String(collection);
     console.log(collection);
     var data = req.body;
