@@ -50,9 +50,11 @@ app.get('/test', function(req, res) {
 // This accepts all posts requests!
 app.post('/*', function(req, res) {
 
-    console.log(req.params);
-    var collection = req.params[0]
+    console.log(leagueID);
+    var leagueID = req.params[0].split("/")[1];
+    var collection = req.params[0].split("/")[1];
     collection = String(collection);
+    console.log(collection);
     var data = req.body;
     db.collection(collection).insert({test : data});
     //db.collection('everything').insert({test : data});
