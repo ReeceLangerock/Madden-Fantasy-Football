@@ -65,7 +65,7 @@ app.post('/*', function(req, res) {
     console.log(collection);
     //collection = String(collection);
     var data = req.body;
-    db.collection(collection).remove({});
+
     db.collection(collection).insert({documentName: data});
     //db.collection('everything').insert({test : data});
 
