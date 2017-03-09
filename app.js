@@ -56,7 +56,7 @@ app.post('/*', function(req, res) {
     if (collection.length == 3){
       collection = collection[2];
     } else{
-      collection = collection.slice(2,4);
+      collection = collection.slice(2,5);
       collection = collection.join('');
     }
     console.log(collection);
