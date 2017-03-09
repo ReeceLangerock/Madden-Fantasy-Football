@@ -56,10 +56,10 @@ app.post('/*', function(req, res) {
     if (collection.length == 3){
       collection = collection[2];
     } else{
-      collection = collection.splice(2,4);
+      collection = collection.slice(2,4);
       collection = collection.join('');
     }
-
+    console.log(collection);
     //collection = String(collection);
     var data = req.body;
     db.collection(collection).remove({});
