@@ -66,6 +66,7 @@ app.post('/*', function(req, res) {
         collection = collection.join('');
         label = Object.keys(req.body)[0]
 
+
     } else if (collection.includes("team") && collection.length > 4) {
         collection = collection.slice(3, 4);
         label = "roster"
@@ -75,8 +76,8 @@ app.post('/*', function(req, res) {
         collection = collection.slice(2, 5);
         collection = collection.join('');
     }
-
     var data = req.body;
+
     remove(label).then(function(response, error) {
         if (response == 'REMOVED') {
             db.collection(collection).insert({
@@ -104,33 +105,61 @@ function remove(label) {
 
     }
 
-
-    function calculatePyth(data) {
-        console.log(data.teamName);
-        var teamName = data.teamName;
-        var gamesPlayed = data.totalWins + data.totalLosses + data.totalTies;
-        var wins = data.totalWins;
-        var pointsFor = data.ptsFor * gamesPlayed;
-        var pointsAgainst = data.ptsAgainst * gamesPlayed;
-
-        var expectedWins = (Math.pow(pointsFor, 2.37) / (Math.pow(pointsFor, 2.37) + Math.pow(pointsAgainst, 2.37)) * gamesPlayed);
-        var pythDiff = (wins - expectedWins);
-        pythDiff = pythDiff.toFixed(2);
-        expectedWins = Math.round(expectedWins * 100) / 100;
-
-        leagueInfoData.push({
-            "teamName": teamName,
-            "gamesPlayed": gamesPlayed,
-            "teamWins": wins,
-            "pointsScored": pointsFor,
-            "pointsAllowed": pointsAgainst,
-            "pythExpWins": expectedWins,
-            "pythDiff": pythDiff
-        });
-
+    /*
+    const db = admin.database();
+    const ref = db.ref();
+    const dataRef = ref.child("data");
+    // Change what is set to the database here
+    // Rosters are in the body under rosterInfoList
+    const newDataRef = dataRef.push();
+    newDataRef.set({
+      data: (req && req.body) || ''
+    });
+    if ('rosterInfoList' in req.body) {
+        for (let i = 0; i < req.body.rosterInfoList.length; i++) {
+            console.log(req.body.rosterInfoList[i].firstName + " " + req.body.rosterInfoList[i].lastName);
+        }
+    } else if ('teamStandingInfoList' in req.body) {
+        for (let i = 0; i < 32; i++) {
+            tempTeamStandingInfoDump.push(req.body.teamStandingInfoList[i]);
+        }
     }
 
+    for (let i = 0; i < tempTeamStandingInfoDump.length; i++) {
+        calculatePyth(tempTeamStandingInfoDump);
+    }
+    leagueInfoData.sort((a, b) => a.pythExpWins > b.pythExpWins ? -1 : 1);
+    tempTeamStandingInfoDump = [];
+    */
+    res.end();
+});
 
-    app.listen(app.get('port'), function() {
-        console.log('Madden Companion Exporter is running on port', app.get('port'))
+function calculatePyth(data) {
+    console.log(data.teamName);
+    var teamName = data.teamName;
+    var gamesPlayed = data.totalWins + data.totalLosses + data.totalTies;
+    var wins = data.totalWins;
+    var pointsFor = data.ptsFor * gamesPlayed;
+    var pointsAgainst = data.ptsAgainst * gamesPlayed;
+
+    var expectedWins = (Math.pow(pointsFor, 2.37) / (Math.pow(pointsFor, 2.37) + Math.pow(pointsAgainst, 2.37)) * gamesPlayed);
+    var pythDiff = (wins - expectedWins);
+    pythDiff = pythDiff.toFixed(2);
+    expectedWins = Math.round(expectedWins * 100) / 100;
+
+    leagueInfoData.push({
+        "teamName": teamName,
+        "gamesPlayed": gamesPlayed,
+        "teamWins": wins,
+        "pointsScored": pointsFor,
+        "pointsAllowed": pointsAgainst,
+        "pythExpWins": expectedWins,
+        "pythDiff": pythDiff
     });
+
+}
+
+
+app.listen(app.get('port'), function() {
+    console.log('Madden Companion Exporter is running on port', app.get('port'))
+});
