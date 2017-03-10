@@ -65,8 +65,8 @@ app.post('/*', function(req, res) {
       collection = collection.slice(2,5);
       collection = collection.join('');
 
-      console.log(req.body.gameScheduleInfoList);
-    
+      remove(req.body.gameScheduleInfoList);
+
 
     }else if(collection.includes("team") && collection.length > 4){
       collection = collection.slice(3,4);
@@ -83,8 +83,8 @@ app.post('/*', function(req, res) {
     db.collection(collection).insert({[documentName]: data});
 
 
-    function remove(){
-      db.collection(collection).remove();
+    function remove(documentName){
+      db.collection(collection).remove({data.documentName});
 
     }
 
