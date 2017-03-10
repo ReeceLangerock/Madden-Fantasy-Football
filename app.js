@@ -24,8 +24,8 @@ app.use(bodyParser.urlencoded({
 mongoose.connect(`mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@ds161485.mlab.com:61485/revo-gm`);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection eror:'));
-db.once('open', function(){
-  console.log("connected");
+db.once('open', function() {
+    console.log("connected");
 })
 
 
@@ -52,39 +52,45 @@ app.post('/*', function(req, res) {
 
     var leagueID = req.params[0].split("/")[1];
 
-    if(leagueID != "5414177"){
-      console.log("Nice try, asshole.");
-      res.send("Nice try, asshole.");
+    if (leagueID != "5414177") {
+        console.log("Nice try, asshole.");
+        res.send("Nice try, asshole.");
     }
 
     var collection = req.params[0].split("/");
     var documentName = "data";
-    if (collection.length == 3){
-      collection = collection[2];
-    } else if(collection.includes("week")){
-      collection = collection.slice(2,5);
-      collection = collection.join('');
+    if (collection.length == 3) {
+        collection = collection[2];
+    } else if (collection.includes("week")) {
+        collection = collection.slice(2, 5);
+        collection = collection.join('');
 
-      remove(req.body.gameScheduleInfoList);
+        if (req.body.gameScheduleInfoList) {
+            remove("data.gameScheduleInfoList");
+        } else if (req.body.playerDefensiveStatInfoList) {
+            remove("data.playerDefensiveStatInfoList");
+        }
 
 
-    }else if(collection.includes("team") && collection.length > 4){
-      collection = collection.slice(3,4);
-      documentName = "roster"
-      collection = collection.join('');
+    } else if (collection.includes("team") && collection.length > 4) {
+        collection = collection.slice(3, 4);
+        documentName = "roster"
+        collection = collection.join('');
 
-    } else{
-      collection = collection.slice(2,5);
-      collection = collection.join('');
+    } else {
+        collection = collection.slice(2, 5);
+        collection = collection.join('');
     }
 
     var data = req.body;
 
-    db.collection(collection).insert({[documentName]: data});
+    db.collection(collection).insert({
+        [documentName]: data
+    });
 
 
-    function remove(documentName){
-      db.collection(collection).remove({data.documentName});
+    function remove(documentName) {
+        db.collection(collection).remove([documentName]);
 
     }
 
