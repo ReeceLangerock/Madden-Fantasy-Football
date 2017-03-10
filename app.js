@@ -48,7 +48,7 @@ app.get('/test', function(req, res) {
 
 
 // This accepts all posts requests!
-router.post('/*', function(req, res) {
+app.post('/*', function(req, res) {
 
     var leagueID = req.params[0].split("/")[1];
 
