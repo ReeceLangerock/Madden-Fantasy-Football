@@ -53,6 +53,7 @@ app.post('/*', function(req, res) {
 
     var leagueID = req.params[0].split("/")[1];
     var collection = req.params[0].split("/");
+    console.log(collection);
     var documentName = "data";
     if (collection.length == 3){
       collection = collection[2];
@@ -60,7 +61,7 @@ app.post('/*', function(req, res) {
       collection = collection.slice(2,5);
       collection = collection.join('');
 
-    }else if(collection.includes("team") && collection.length > 5){
+    }else if(collection.includes("team") && collection.length > 4){
       console.log("team");
       collection = collection.slice(2,4);
       documentName = collection[1];
@@ -71,7 +72,6 @@ app.post('/*', function(req, res) {
       collection = collection.join('');
 
     }
-    console.log(collection);
     console.log(documentName);
     //collection = String(collection);
     var data = req.body;
