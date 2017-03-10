@@ -105,34 +105,7 @@ function remove(label) {
 
     }
 
-    /*
-    const db = admin.database();
-    const ref = db.ref();
-    const dataRef = ref.child("data");
-    // Change what is set to the database here
-    // Rosters are in the body under rosterInfoList
-    const newDataRef = dataRef.push();
-    newDataRef.set({
-      data: (req && req.body) || ''
-    });
-    if ('rosterInfoList' in req.body) {
-        for (let i = 0; i < req.body.rosterInfoList.length; i++) {
-            console.log(req.body.rosterInfoList[i].firstName + " " + req.body.rosterInfoList[i].lastName);
-        }
-    } else if ('teamStandingInfoList' in req.body) {
-        for (let i = 0; i < 32; i++) {
-            tempTeamStandingInfoDump.push(req.body.teamStandingInfoList[i]);
-        }
-    }
 
-    for (let i = 0; i < tempTeamStandingInfoDump.length; i++) {
-        calculatePyth(tempTeamStandingInfoDump);
-    }
-    leagueInfoData.sort((a, b) => a.pythExpWins > b.pythExpWins ? -1 : 1);
-    tempTeamStandingInfoDump = [];
-    */
-    res.end();
-});
 
 function calculatePyth(data) {
     console.log(data.teamName);
