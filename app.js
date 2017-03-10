@@ -52,7 +52,8 @@ app.post('/*', function(req, res) {
 
     var leagueID = req.params[0].split("/")[1];
 
-    if(leagueID != "5414177";){
+    if(leagueID != "5414177"){
+      console.log("Nice try, asshole.");
       res.send("Nice try, asshole.");
     }
 
