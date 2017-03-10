@@ -81,14 +81,14 @@ app.post('/*', function(req, res) {
     }
 
     var data = req.body;
-
+    console.log(label);
     db.collection(collection).insert({label: [label],
         data: data
     });
 
 
     function remove(label) {
-        db.collection(collection).remove(label: [label]);
+        db.collection(collection).remove({label: [label]});
 
     }
 
