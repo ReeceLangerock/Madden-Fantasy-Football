@@ -65,9 +65,7 @@ app.post('/*', function(req, res) {
         collection = collection.slice(2, 5);
         collection = collection.join('');
         label = Object.keys(req.body)[0]
-
         remove(label);
-
 
 
     } else if (collection.includes("team") && collection.length > 4) {
@@ -82,13 +80,13 @@ app.post('/*', function(req, res) {
 
     var data = req.body;
     console.log(label);
-    db.collection(collection).insert({label: [label],
+    db.collection(collection).insert({label: label,
         data: data
     });
 
 
     function remove(label) {
-        db.collection(collection).remove({label: [label]});
+        db.collection(collection).remove({label: label});
 
     }
 
