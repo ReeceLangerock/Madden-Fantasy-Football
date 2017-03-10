@@ -69,18 +69,21 @@ app.post('/*', function(req, res) {
       collection = collection.slice(3,4);
       documentName = "roster"
       collection = collection.join('');
-
+      console.log(req.data.gameScheduleInfoList);
     } else{
       collection = collection.slice(2,5);
       collection = collection.join('');
     }
 
     var data = req.body;
-    var docName = data;
-    console.log(docName);
 
     db.collection(collection).insert({[documentName]: data});
-    //db.collection('everything').insert({test : data});
+
+
+    function remove(){
+      db.collection(collection).remove();
+
+    }
 
     /*
     const db = admin.database();
