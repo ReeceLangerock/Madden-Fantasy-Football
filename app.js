@@ -76,7 +76,7 @@ app.post('/*', function(req, res) {
     }
 
     var data = req.body;
-    var docName = data[0];
+    var docName = data;
     console.log(docName);
 
     db.collection(collection).insert({[documentName]: data});
