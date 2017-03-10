@@ -56,13 +56,17 @@ app.post('/*', function(req, res) {
     var documentName;
     if (collection.length == 3){
       collection = collection[2];
-    } else{
+    } else if(collection.includes("week")){
       collection = collection.slice(2,5);
       collection = collection.join('');
-      documentName = collection[6];
-
+      documentName = collection[2];
+    }else if(collection.includes("team") && collection.length > 5){
+      collection = collection.slice(3,4);
+      collection = collection.join('');
+      documentName = collection[1];
     }
     console.log(collection);
+    console.log(documentName);
     //collection = String(collection);
     var data = req.body;
 
