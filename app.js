@@ -58,23 +58,21 @@ app.post('/*', function(req, res) {
     }
 
     var collection = req.params[0].split("/");
-    var documentName = "data";
+    var label = "data";
     if (collection.length == 3) {
         collection = collection[2];
     } else if (collection.includes("week")) {
         collection = collection.slice(2, 5);
         collection = collection.join('');
+        label = Object.keys(req.body)[0]
 
-        if (req.body.gameScheduleInfoList) {
-            remove("data.gameScheduleInfoList");
-        } else if (req.body.playerDefensiveStatInfoList) {
-            remove("data.playerDefensiveStatInfoList");
-        }
+        remove(label);
+
 
 
     } else if (collection.includes("team") && collection.length > 4) {
         collection = collection.slice(3, 4);
-        documentName = "roster"
+        label = "roster"
         collection = collection.join('');
 
     } else {
@@ -84,13 +82,13 @@ app.post('/*', function(req, res) {
 
     var data = req.body;
 
-    db.collection(collection).insert({
-        [documentName]: data
+    db.collection(collection).insert({label: [label],
+        data: data
     });
 
 
-    function remove(documentName) {
-        db.collection(collection).remove([documentName]);
+    function remove(label) {
+        db.collection(collection).remove(label: [label]);
 
     }
 
