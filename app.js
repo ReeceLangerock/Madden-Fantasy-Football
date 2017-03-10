@@ -50,10 +50,13 @@ app.get('/test', function(req, res) {
 // This accepts all posts requests!
 app.post('/*', function(req, res) {
 
-
     var leagueID = req.params[0].split("/")[1];
+
+    if(leagueID != "5414177";){
+      res.send("Nice try, asshole.");
+    }
+
     var collection = req.params[0].split("/");
-    console.log(collection);
     var documentName = "data";
     if (collection.length == 3){
       collection = collection[2];
@@ -62,19 +65,18 @@ app.post('/*', function(req, res) {
       collection = collection.join('');
 
     }else if(collection.includes("team") && collection.length > 4){
-      console.log("team");
-      collection = collection.slice(2,4);
-      documentName = collection[1];
+      collection = collection.slice(3,4);
+      documentName = "roster"
       collection = collection.join('');
 
     } else{
       collection = collection.slice(2,5);
       collection = collection.join('');
-
     }
-    console.log(documentName);
-    //collection = String(collection);
+
     var data = req.body;
+    var docName = data[0];
+    console.log(docName);
 
     db.collection(collection).insert({[documentName]: data});
     //db.collection('everything').insert({test : data});
