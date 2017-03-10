@@ -65,8 +65,8 @@ app.post('/*', function(req, res) {
       collection = collection.slice(2,5);
       collection = collection.join('');
 
-      console.log(req.body);
-    }
+      console.log(req.body.gameScheduleInfoList);
+    
 
     }else if(collection.includes("team") && collection.length > 4){
       collection = collection.slice(3,4);
