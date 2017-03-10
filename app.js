@@ -64,12 +64,18 @@ app.post('/*', function(req, res) {
     } else if(collection.includes("week")){
       collection = collection.slice(2,5);
       collection = collection.join('');
+      if(req.data.gameScheduleInfoList){
       console.log(req.data.gameScheduleInfoList);
+    }
+      else{
+          console.log(req.data.gameScheduleInfoList);
+      }
+    
     }else if(collection.includes("team") && collection.length > 4){
       collection = collection.slice(3,4);
       documentName = "roster"
       collection = collection.join('');
-      
+
     } else{
       collection = collection.slice(2,5);
       collection = collection.join('');
