@@ -76,9 +76,9 @@ app.post('/*', function(req, res) {
         collection = collection.slice(2, 5);
         collection = collection.join('');
     }
-    var data = req.body;
 
-    remove(label).then(function(response, error) {
+    var data = req.body;
+    remove(label, collection).then(function(response, error) {
         if (response == 'REMOVED') {
             db.collection(collection).insert({
                 label: label,
@@ -90,7 +90,7 @@ app.post('/*', function(req, res) {
 
 });
 
-function remove(label) {
+function remove(label, collection) {
     return new Promise(function(resolve, reject) {
             db.collection(collection).remove({
                 label: label
@@ -104,8 +104,6 @@ function remove(label) {
         })
 
     }
-
-
 
 function calculatePyth(data) {
     console.log(data.teamName);
